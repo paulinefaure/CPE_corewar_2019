@@ -21,8 +21,9 @@ parse_args_list(context_t *ctx, tokenizer_t *tokenizer, token_t *name, int i)
                                         op_tab[i], op_tab[i].type[j]);
         if (arg == 0)
             return (0);
-        if (j < op_tab[i].nbr_args - 1 && !require_token(tokenizer, ",", 0))
-            context_push_error(ctx, tokenizer, "Expected ','.\n");
+        require_token(tokenizer, ",", 0);
+        // if (j < op_tab[i].nbr_args - 1 && !require_token(tokenizer, ",", 0))
+        //     context_push_error(ctx, tokenizer, "Expected ','.");
         *target = arg;
         target = &(*target)->next;
     }
@@ -62,6 +63,7 @@ parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
 {
     enode_node_t *new = 0;
     op_t op;
+    bool res = false;
 
     for (int i = 0; op_tab[i].mnemonique; i++) {
         if (!my_strncmp(op_tab[i].mnemonique, name->txt, name->length)) {
@@ -72,9 +74,12 @@ parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
             new->type = node_instruction;
             new->first_arg = parse_args_list(ctx, tokenizer, name, i);
             new = new->first_arg != 0 ? new : 0;
+            res = true;
             break;
         }
     }
+    if (res == false)
+        context_push_error(ctx, tokenizer, "Invalid instruction.");
     set_total_size(op, new);
     return (new);
 }

@@ -48,7 +48,7 @@ process_parsed_graph(char *filename, enode_node_t * root,
 }
 
 static enode_node_t *
-parse_file(context_t * context, char *file)
+parse_file(context_t *context, char *file)
 {
     tokenizer_t tokenizer = { 0 };
     tokenizer.at = file;
@@ -68,7 +68,7 @@ enode_node_parser(enode_node_custom_t * ctm, char **fnames, int fcount)
     struct parsed *parsed = context_allocate_memory(&ctx, sizeof(*parsed) *
                                                     fcount);
     ASSERT(parsed != 0);
-    for (int i = 0; i < fcount; i++) {
+    for (int i = 1; i < fcount; i++) {
         IF_THEN(fnames[i] == 0, continue);
         my_printf("Processing file at \"%s\".\n", fnames[i]);
         char *file = readfile_into_mem(&ctx, fnames[i]);
