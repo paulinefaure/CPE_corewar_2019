@@ -9,6 +9,7 @@
 #define __ENODE_H__
 
 #include "debug.h"
+#include "op.h"
 
 #define ERROR(x) "\33[31mERROR:\33[0m "
 
@@ -79,6 +80,7 @@ typedef enum node_type {
     node_string,
     node_char,
     node_label,
+    node_dir_label,
     node_header,
     node_instruction
 } node_type;
@@ -98,7 +100,6 @@ typedef struct tokenizer {
 } tokenizer_t;
 
 typedef struct enode_node enode_node_t;
-typedef void (enode_node_init_callback)(void *user_data);
 typedef void (enode_node_parse_callback)(enode_node_t *root, char *filename,
                                                         void *user_data);
 typedef void (enode_node_clean_up_callback)(void *user_data);
@@ -130,14 +131,6 @@ struct enode_node {
         struct {
             enode_node_t *instruction;
         } label;
-
-        struct {
-            int ptr_count;
-            enode_node_t *first_array_size_expression;
-            enode_node_t *struct_declaration;
-            enode_node_t *union_declaration;
-            enode_node_t *type_definition;
-        } type_usage;
     };
 };
 
@@ -145,7 +138,6 @@ typedef struct enode_node_custom enode_node_custom_t;
 struct enode_node_custom
 {
     void *user_data;
-    enode_node_init_callback *init;
     enode_node_parse_callback *parse;
     enode_node_clean_up_callback *clean_up;
 };
@@ -213,18 +205,6 @@ bool token_match(token_t token, char *string);
 bool
 require_token_type(tokenizer_t *tokenizer, token_type type,
                                             token_t *token_ptr);
-int get_binary_op_type_from_token(token_t token);
-
-
-
-
-
-/******         Binary/Unary Util         ******/
-
-char *enode_get_unary_op_string(int type);
-char *enode_get_binary_op_string(int type);
-
-
 
 
 
@@ -252,29 +232,7 @@ int my_char_is_symbol(int c);
 void parse_string(char **c, token_t *token);
 void parse_alpha(char **c, token_t *token);
 void parse_number(char **c, token_t *token);
-void new_string(token_t *tok);
-enode_node_t *
-parse_struct_body(context_t *context, tokenizer_t *tokenizer, token_t name);
-enode_node_t *
-parse_type_usage(context_t *context, tokenizer_t *tokenizer);
-enode_node_t *
-parse_declaration_list(context_t *context, tokenizer_t *tokenizer);
-enode_node_t *
-parse_declaration_body(context_t *contxt, tokenizer_t *toke, token_t name);
-enode_node_t *parse_context_pop_all_tag(context_t *context);
-void parse_tag_list(context_t *context, tokenizer_t *tokenizer);
 enode_node_t *parse_code(context_t *context, tokenizer_t *tokenizer);
-enode_node_t *
-parse_enum_body(context_t *context, tokenizer_t *tokenizer, token_t name);
-enode_node_t *
-parse_identifier_list(context_t *contxt, tokenizer_t *tokenizer);
-enode_node_t *
-parse_union_body(context_t *context, tokenizer_t *tokenizer, token_t name);
-enode_node_t *
-parse_expression(context_t *context, tokenizer_t *tokenizer);
-enode_node_t *
-parse_unary_expression(context_t *context, tokenizer_t *tokenizer);
-
 
 
 
@@ -283,18 +241,6 @@ parse_unary_expression(context_t *context, tokenizer_t *tokenizer);
 
 void
 generated_graph_str(context_t *contxt, enode_node_t *root);
-void enode_node_write_graph_c(int fd, enode_node_t *root, int follow_next);
-void enode_node__write_graph_c(int fd, enode_node_t *root,
-                                int follow_next, int nest);
-void write_enode_node_struct_declaration(int fd, enode_node_t *root, int nest);
-void write_enode_node_declaration(int fd, enode_node_t *root,
-                                    int follow_next, int nest);
-void write_enode_node_type_usage(int fd, enode_node_t *root, int nest);
-void write_enode_node_union_as_c(int fd, enode_node_t *root, int nest);
-void write_enode_node_enum_as_c(int fd, enode_node_t *root, int nest);
-void write_tag_grah_c(int fd, enode_node_t *root, int nest);
-void write_enode_node_binary(int fd, enode_node_t *root, int nest);
-void write_enode_node_unary(int fd, enode_node_t *root, int nest);
 
 
 
@@ -312,44 +258,20 @@ void
 context_clean_up(context_t *context);
 void
 context_push_error(context_t *context, tokenizer_t *tokenizer, char *msg, ...);
-
-
-
-
-
-/******         Utils for custom code gen.         ******/
-
 enode_node_t *
-enode_get_tag_param(enode_node_t *tag, int parameter_number);
+parse_args(context_t *ctx, tokenizer_t *toke, op_t op, args_type_t type);
 enode_node_t *
-get_enode_node_tag(enode_node_t *root, char *tag);
-int
-enode_node_has_tag(enode_node_t *node, char *tag);
-bool
-enode_node_declaration_is_type(enode_node_t *root, char *type);
-bool
-enode_node_struct_member_is_type(enode_node_t *root, char *type);
-bool
-enode_string_has_alphanumeric_block(char *string, char *substring);
-int
-enode_string_has_substring(char *string, char *substring);
+parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name);
 
 
 
-
-
-/******         Print Code Gen.         ******/
-
-void generate_header(int fd, char *filename);
-int generate_code(int count, char **filenames);
-void generate_print_code(int file, enode_node_t *root, char *acc_str);
-void generate__print_code(int file, enode_node_t *node, char *acc_str);
-void generate_procedure(int file, int file2, enode_node_t *root);
-void generate_destroyer_code(int file, enode_node_t *root);
-void generate_setter_code(int file, enode_node_t *root, char *acc_str);
-
-void enode_init_cb(void *data);
 void enode_parse_cb(enode_node_t *root, char *filename, void *data);
 void enode_clean_up_cb(void *data);
+
+size_t get_request_label_position(
+    enode_node_t *first, enode_node_t *tofind);
+size_t get_label_position(enode_node_t *first, char *labelname);
+
+void conversion_instruction(int fd, enode_node_t * root, enode_node_t *node);
 
 #endif

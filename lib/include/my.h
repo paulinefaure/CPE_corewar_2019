@@ -26,6 +26,7 @@ char *my_strncat(char *dest, char const *src, int nb);
 char *my_strdup(char const *src);
 char *my_charcat(char *dest, char src);
 char *my_strchr(char *str, int c);
+int my_getnbr(char const *str);
 
 int fs_open_file(char const *filepath, char *perm);
 

@@ -63,7 +63,6 @@ parse_file(context_t * context, char *file)
 int
 enode_node_parser(enode_node_custom_t * ctm, char **fnames, int fcount)
 {
-    IF_THEN(ctm->init, ctm->init(ctm->user_data));
     context_t ctx = { 0 };
     int nbr_parsed = 0;
     struct parsed *parsed = context_allocate_memory(&ctx, sizeof(*parsed) *

@@ -9,6 +9,7 @@
 #include "my.h"
 #include "parser.h"
 #include "smart_ptr.h"
+#include "op.h"
 
 struct header_t {
     int header;
@@ -16,22 +17,16 @@ struct header_t {
 };
 
 void
-enode_init_cb(void *data)
-{
-
-}
-
-void
 enode_parse_cb(enode_node_t * root, char *filename, void *data)
 {
+    int fd = fs_open_file(replace_extension(filename, ".cor"), "w");
+    if (fd == -1)
+        return;
     for (enode_node_t *node = root; node; node = node->next) {
-        if (node->first_arg) {
-            my_printf("Size: %d\n", node->size);
-        }
-        if (node->type == node_label && node->label.instruction) {
-            my_printf("Size: %d\n", node->label.instruction->size);
-        }
-        my_printf("%d: %s\n\n", node->type, node->string);
+        if (node->type == node_label && node->label.instruction)
+            conversion_instruction(fd, root, node->label.instruction);
+        if (node->type == node_instruction)
+            conversion_instruction(fd, root, node);
     }
 }
 

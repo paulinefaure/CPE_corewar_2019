@@ -22,7 +22,6 @@ generate_code(int count, char **filenames)
     struct header_t files = { 0 };
 
     enode_node_custom_t custom = {
-        .init = &enode_init_cb,
         .parse = &enode_parse_cb,
         .clean_up = &enode_clean_up_cb,
         .user_data = &files,

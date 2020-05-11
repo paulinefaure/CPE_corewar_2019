@@ -21,6 +21,22 @@ parse_other(char t, char **c, token_t *token)
     }
 }
 
+void token_dir(char **c, token_t *token)
+{
+    if (my_char_isnum(**c)) {
+        token->type = token_dir_number;
+        while (my_char_isnum(**c))
+            ++(*c);
+        token->length = *c - token->txt;
+    } else if (**c == ':') {
+        token->type = token_dir_label;
+        ++(*c);
+        while (my_char_isalpha(**c) || my_char_isnum(**c) || **c == '_')
+            ++(*c);
+        token->length = (*c) - token->txt;
+    }
+}
+
 token_t
 get_token(tokenizer_t *tokenizer)
 {
@@ -32,18 +48,7 @@ get_token(tokenizer_t *tokenizer)
     ++c;
     ASSIGN_RETURN_IF(t == '\0', token.type = token_eof, return (token));
     if (t == '%') {
-        if (my_char_isnum(*c)) {
-            token.type = token_dir_number;
-            while (my_char_isnum(*c))
-                ++c;
-            token.length = c - token.txt;
-        } else if (*c == ':') {
-            token.type = token_dir_label;
-            ++c;
-            while (my_char_isalpha(*c) || my_char_isnum(*c) || *c == '_')
-                ++c;
-            token.length = c - token.txt;
-        }
+        token_dir(&c, &token);
         token.lines_traversed = line;
         token.cur = c;
         return (token);
