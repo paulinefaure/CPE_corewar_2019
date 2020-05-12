@@ -65,8 +65,7 @@ enode_node_t *parse_instruction(context_t *ctx,
         if (!my_strncmp(op_tab[i].mnemonique, name->txt, name->length)) {
             op = op_tab[i];
             new = context_allocate_node(ctx);
-            new->string = name->txt;
-            new->length = name->length;
+            set_node(new, name, 0, 0);
             new->type = node_instruction;
             new->first_arg = parse_args_list(ctx, tokenizer, i);
             new = new->first_arg != 0 ? new : 0;

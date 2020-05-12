@@ -18,7 +18,7 @@ void set_node(enode_node_t *new, token_t *token, int size, int flag)
     new->flag |= flag;
 }
 
-void parse_args_dir(context_t *ctx, tokenizer_t *toke, 
+void parse_args_dir(context_t *ctx, tokenizer_t *toke,
                             op_t op, enode_node_t *new)
 {
     token_t token;
