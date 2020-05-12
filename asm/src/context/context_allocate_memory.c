@@ -9,21 +9,19 @@
 #include "my.h"
 #include "parser.h"
 
-static memory_block_t *
-context_allocate_memory_block(unsigned int needed_bytes)
+static memory_block_t *context_allocate_memory_block(unsigned int need_bytes)
 {
     memory_block_t *new_block = 0;
-    new_block = malloc(sizeof(memory_block_t) + needed_bytes);
-    my_memset(new_block, 0, sizeof(memory_block_t) + needed_bytes);
+    new_block = malloc(sizeof(memory_block_t) + need_bytes);
+    my_memset(new_block, 0, sizeof(memory_block_t) + need_bytes);
     ASSERT(new_block != 0);
     new_block->memory = (char *) new_block + sizeof(memory_block_t);
-    new_block->memory_size = needed_bytes;
+    new_block->memory_size = need_bytes;
     new_block->next = 0;
     return (new_block);
 }
 
-void
-context_allocate_memory_check(context_t * context, memory_block_t * new)
+void context_allocate_memory_check(context_t * context, memory_block_t * new)
 {
     if (context->active_block) {
         context->active_block->next = new;
@@ -34,8 +32,7 @@ context_allocate_memory_check(context_t * context, memory_block_t * new)
     }
 }
 
-void *
-context_allocate_memory(context_t * context, unsigned int size)
+void *context_allocate_memory(context_t * context, unsigned int size)
 {
     if (!context->active_block ||
         context->active_block->memory_alloc_position + size >
@@ -59,8 +56,7 @@ context_allocate_memory(context_t * context, unsigned int size)
     return memory;
 }
 
-enode_node_t *
-context_allocate_node(context_t * context)
+enode_node_t *context_allocate_node(context_t * context)
 {
     enode_node_t *node = context_allocate_memory(context,
                                                 sizeof(enode_node_t));
@@ -68,8 +64,7 @@ context_allocate_node(context_t * context)
     return node;
 }
 
-void
-context_clean_up(context_t * context)
+void context_clean_up(context_t * context)
 {
     for (memory_block_t * block = context->first_block; block;) {
         memory_block_t *next = block->next;

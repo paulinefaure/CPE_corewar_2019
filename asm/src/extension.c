@@ -12,8 +12,7 @@
 
 const char *extens = ".s";
 
-bool
-verif_ext(char *name)
+bool verif_ext(char *name)
 {
     char *find = my_strchr(name, '.');
     size_t len = find - name;
@@ -33,8 +32,7 @@ verif_ext(char *name)
     return (res);
 }
 
-char *
-replace_extension(char *name, char *ext)
+char *replace_extension(char *name, char *ext)
 {
     char *find = my_strchr(name, '.');
     size_t len = find - name;

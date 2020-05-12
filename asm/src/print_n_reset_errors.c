@@ -13,8 +13,7 @@ const char *RESET = "\33[0m";
 const char *RED = "\33[31m";
 const char *YELLOW = "\33[33m";
 
-void
-print_n_reset_errors(context_t * context)
+void print_n_reset_errors(context_t * context)
 {
     for (int i = 0; i < context->error_stack_size; i++) {
         fsprintf(2, "%sERROR:%s%s (Line:%d): %s%s\n",

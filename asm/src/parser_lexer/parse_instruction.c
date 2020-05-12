@@ -10,10 +10,8 @@
 #include "parser.h"
 #include "op.h"
 
-enode_node_t *
-parse_args_list(context_t *ctx, tokenizer_t *tokenizer, token_t *name, int i)
+enode_node_t *parse_args_list(context_t *ctx, tokenizer_t *tokenizer, int i)
 {
-    token_t token = {0};
     enode_node_t *root = 0, **target = &root;
 
     for (int j = 0; j < op_tab[i].nbr_args; j++) {
@@ -22,8 +20,6 @@ parse_args_list(context_t *ctx, tokenizer_t *tokenizer, token_t *name, int i)
         if (arg == 0)
             return (0);
         require_token(tokenizer, ",", 0);
-        // if (j < op_tab[i].nbr_args - 1 && !require_token(tokenizer, ",", 0))
-        //     context_push_error(ctx, tokenizer, "Expected ','.");
         *target = arg;
         target = &(*target)->next;
     }
@@ -58,8 +54,8 @@ void set_total_size(op_t op, enode_node_t *new)
     }
 }
 
-enode_node_t *
-parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
+enode_node_t *parse_instruction(context_t *ctx,
+                                tokenizer_t *tokenizer, token_t *name)
 {
     enode_node_t *new = 0;
     op_t op;
@@ -72,7 +68,7 @@ parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
             new->string = name->txt;
             new->length = name->length;
             new->type = node_instruction;
-            new->first_arg = parse_args_list(ctx, tokenizer, name, i);
+            new->first_arg = parse_args_list(ctx, tokenizer, i);
             new = new->first_arg != 0 ? new : 0;
             res = true;
             break;

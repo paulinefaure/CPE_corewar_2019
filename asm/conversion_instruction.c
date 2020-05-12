@@ -22,12 +22,13 @@ int get_opcode(char *name)
         if (my_strcmp(op_tab[i].mnemonique, name) == 0)
             return op_tab[i].code;
     }
+    return (-1);
 }
 
 void write_zero(int fd, size_t n)
 {
     int zero = 0x00;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; (size_t) i < n; i++) {
         write(fd, &zero, 1);
     }
 }
@@ -56,9 +57,10 @@ void write_directive(int fd, enode_node_t *root,
     }
 }
 
-void conversion_instruction(int fd, enode_node_t * root, enode_node_t *node)
+int conversion_instruction(int fd, enode_node_t * root, enode_node_t *node)
 {
     int op = get_opcode(node->string);
+    LOG_ERROR(op == -1, return (84), "Instruction Introuvable");
     write(fd, &op, sizeof(char));
     if (node->argcode)
         write(fd, ((char *)(&(node->argcode))), 1);
@@ -76,4 +78,5 @@ void conversion_instruction(int fd, enode_node_t * root, enode_node_t *node)
             write(fd, &ar, 1);
         }
     }
+    return (0);
 }

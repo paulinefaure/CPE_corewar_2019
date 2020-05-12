@@ -11,17 +11,13 @@
 #include "parser.h"
 #include "my_printf.h"
 
-void print(char **out, const char *format, va_list args);
-
-static void
-my_sprintf_args(char *stored_msg, char *msg, va_list args)
+static void my_sprintf_args(char *stored_msg, char *msg, va_list args)
 {
     print(&stored_msg, msg, args);
 }
 
-void
-context_push_error(context_t * context, tokenizer_t * tokenizer, char *msg,
-                    ...)
+void context_push_error(context_t * context,
+                        tokenizer_t * tokenizer, char *msg, ...)
 {
     if (!context->error_stack) {
         context->error_stack_max = 16;

@@ -10,8 +10,7 @@
 
 int lines = 1;
 
-static bool
-is_whitespace(char c)
+static bool is_whitespace(char c)
 {
     return (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '#');
 }
@@ -23,8 +22,7 @@ void next_line(char **c)
     }
 }
 
-int
-skip_whitespace(char **c)
+int skip_whitespace(char **c)
 {
     int line = 0;
 

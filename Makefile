@@ -6,37 +6,25 @@
 ##
 
 CC = gcc
-TARGET_EXEC ?= asm
 
-SRC_DIR = ./compilo
-
-SRC = $(shell find $(SRC_DIR) -name '*.c')
-OBJ = $(SRC:%.c=%.o)
-
-CFLAGS += -W -Wall $(if $(DEBUG),-g3) $(if $(DEBUG),-DDEBUG)
-LDFLAGS = -Llib -lmy
-INC_FLAGS = -Icompilo/include -Ilib/include
-all: $(TARGET_EXEC)
+all: lib_make asm_make
 
 lib_make:
-	@make -s -C lib/my
+	@make -sC lib/my
 
-$(TARGET_EXEC): lib_make $(OBJ)
-	@$(CC) -o $@ $(OBJ) $(CFLAGS) $(LDFLAGS)
-
-%.o: %.c
-	@$(CC) $(INC_FLAGS) $(CFLAGS) -c $< -o $@
-	@echo "\033[1;32mCompiled \033[1;37m'$<'\033[m"
+asm_make:
+	@make -sC asm
 
 .PHONY: clean
 clean:
-	@$(RM) -r $(OBJ)
+	@make clean -sC lib/my
+	@make clean -sC asm/
 
 .PHONY: fclean
 fclean: clean
-	@$(RM) -r $(TARGET_EXEC)
 	@$(RM) -r vgcore*
 	@make fclean -s -C lib/my
+	@make fclean -sC asm/
 
 .PHONY: re
 re: fclean all

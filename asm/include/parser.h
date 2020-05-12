@@ -100,7 +100,7 @@ typedef struct tokenizer {
 } tokenizer_t;
 
 typedef struct enode_node enode_node_t;
-typedef void (enode_node_parse_callback)(enode_node_t *root, char *filename,
+typedef int (enode_node_parse_callback)(enode_node_t *root, char *filename,
                                                         void *user_data);
 typedef void (enode_node_clean_up_callback)(void *user_data);
 
@@ -187,7 +187,7 @@ struct parse_context
 
 
 /******         Main Call         ******/
-
+int generate_code(int count, char **filenames);
 int enode_node_parser(enode_node_custom_t *custom, char **fnames, int count);
 
 
@@ -202,8 +202,7 @@ token_t peek_token(tokenizer_t *tokenizer);
 token_t next_token(tokenizer_t *tokenizer);
 bool require_token(tokenizer_t *tokenizer, char *string, token_t *token_ptr);
 bool token_match(token_t token, char *string);
-bool
-require_token_type(tokenizer_t *tokenizer, token_type type,
+bool require_token_type(tokenizer_t *tokenizer, token_type type,
                                             token_t *token_ptr);
 
 
@@ -239,8 +238,7 @@ enode_node_t *parse_code(context_t *context, tokenizer_t *tokenizer);
 
 /******         Graph To C Code         ******/
 
-void
-generated_graph_str(context_t *contxt, enode_node_t *root);
+void generated_graph_str(context_t *contxt, enode_node_t *root);
 
 
 
@@ -248,30 +246,26 @@ generated_graph_str(context_t *contxt, enode_node_t *root);
 
 /******         Parse Context         ******/
 
-void
-print_n_reset_errors(context_t *context);
-void *
-context_allocate_memory(context_t *context, unsigned int size);
-enode_node_t *
-context_allocate_node(context_t *context);
-void
-context_clean_up(context_t *context);
-void
-context_push_error(context_t *context, tokenizer_t *tokenizer, char *msg, ...);
-enode_node_t *
-parse_args(context_t *ctx, tokenizer_t *toke, op_t op, args_type_t type);
-enode_node_t *
-parse_instruction(context_t *ctx, tokenizer_t *tokenizer, token_t *name);
+void print_n_reset_errors(context_t *context);
+void *context_allocate_memory(context_t *context, unsigned int size);
+enode_node_t *context_allocate_node(context_t *context);
+void context_clean_up(context_t *context);
+void context_push_error(context_t *context,
+                        tokenizer_t *tokenizer, char *msg, ...);
+enode_node_t *parse_args(context_t *ctx, tokenizer_t *toke,
+                            op_t op, args_type_t type);
+enode_node_t *parse_instruction(context_t *ctx,
+                                tokenizer_t *tokenizer, token_t *name);
 
 
 
-void enode_parse_cb(enode_node_t *root, char *filename, void *data);
+int enode_parse_cb(enode_node_t *root, char *filename, void *data);
 void enode_clean_up_cb(void *data);
 
 size_t get_request_label_position(
-    enode_node_t *first, enode_node_t *tofind);
+                    enode_node_t *first, enode_node_t *tofind);
 size_t get_label_position(enode_node_t *first, char *labelname);
 
-void conversion_instruction(int fd, enode_node_t * root, enode_node_t *node);
-
+int conversion_instruction(int fd, enode_node_t * root, enode_node_t *node);
+void print(char **out, const char *format, va_list args);
 #endif

@@ -15,8 +15,7 @@ struct parsed
     char *filename;
 };
 
-char *
-readfile_into_mem(context_t * cont, char *filepath)
+char *readfile_into_mem(context_t * cont, char *filepath)
 {
     int fd = fs_open_file(filepath, "r");
     char *res = NULL;
@@ -35,20 +34,21 @@ readfile_into_mem(context_t * cont, char *filepath)
     return (res);
 }
 
-static void
-process_parsed_graph(char *filename, enode_node_t * root,
+static void process_parsed_graph(char *filename, enode_node_t * root,
                         context_t * context, enode_node_custom_t * custom)
 {
     generated_graph_str(context, root);
     if (context->exit == 0) {
-        if (custom->parse)
-            custom->parse(root, filename, custom->user_data);
+        if (custom->parse &&
+            custom->parse(root, filename, custom->user_data) == 84) {
+            context->exit = 84;
+            return;
+        }
     }
     print_n_reset_errors(context);
 }
 
-static enode_node_t *
-parse_file(context_t *context, char *file)
+static enode_node_t *parse_file(context_t *context, char *file)
 {
     tokenizer_t tokenizer = { 0 };
     tokenizer.at = file;
@@ -60,8 +60,7 @@ parse_file(context_t *context, char *file)
     return root;
 }
 
-int
-enode_node_parser(enode_node_custom_t * ctm, char **fnames, int fcount)
+int enode_node_parser(enode_node_custom_t * ctm, char **fnames, int fcount)
 {
     context_t ctx = { 0 };
     int nbr_parsed = 0;

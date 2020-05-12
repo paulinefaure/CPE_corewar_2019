@@ -9,8 +9,7 @@
 #include "my.h"
 #include "parser.h"
 
-void
-parse_other(char t, char **c, token_t *token)
+void parse_other(char t, char **c, token_t *token)
 {
     if (my_char_isalpha(t)) {
         parse_alpha(c, token);
@@ -37,8 +36,7 @@ void token_dir(char **c, token_t *token)
     }
 }
 
-token_t
-get_token(tokenizer_t *tokenizer)
+token_t get_token(tokenizer_t *tokenizer)
 {
     char *c = tokenizer->at;
     int line = skip_whitespace(&c);

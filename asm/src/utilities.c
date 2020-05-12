@@ -9,8 +9,7 @@
 #include "my.h"
 #include "parser.h"
 
-char *
-context_strcat_dup(context_t * cont, char *str1, char *str2)
+char *context_strcat_dup(context_t * cont, char *str1, char *str2)
 {
     if (!str1)
         return (str2);
@@ -27,8 +26,7 @@ context_strcat_dup(context_t * cont, char *str1, char *str2)
     return (NULL);
 }
 
-char *
-context_strdup(context_t * cont, char *src)
+char *context_strdup(context_t * cont, char *src)
 {
     int len = my_strlen(src) + 1;
     char *str = context_allocate_memory(cont, sizeof(char) * (len));
@@ -37,8 +35,7 @@ context_strdup(context_t * cont, char *src)
     return (str);
 }
 
-int
-my_char_is_symbol(int c)
+int my_char_is_symbol(int c)
 {
     return (c == '%' || c == ':' ||
             c == ',' || c == '.');

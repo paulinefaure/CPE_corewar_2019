@@ -9,8 +9,7 @@
 #include "my.h"
 #include "parser.h"
 
-static void
-check(context_t * cont, enode_node_t * root)
+static void check(context_t * cont, enode_node_t * root)
 {
     if (root->string) {
         char *new_string = context_allocate_memory(cont,
@@ -22,8 +21,7 @@ check(context_t * cont, enode_node_t * root)
     }
 }
 
-void
-generated_graph_str(context_t * cont, enode_node_t * root)
+void generated_graph_str(context_t * cont, enode_node_t * root)
 {
     if (root) {
         check(cont, root);

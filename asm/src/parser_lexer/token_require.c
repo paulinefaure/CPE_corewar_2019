@@ -9,9 +9,8 @@
 #include "my.h"
 #include "parser.h"
 
-bool
-require_token_type(tokenizer_t * tokenizer, token_type type,
-                    token_t * token_ptr)
+bool require_token_type(tokenizer_t * tokenizer, token_type type,
+                                                token_t * token_ptr)
 {
     token_t token = get_token(tokenizer);
 
@@ -25,15 +24,13 @@ require_token_type(tokenizer_t * tokenizer, token_type type,
     return (false);
 }
 
-bool
-token_match(token_t token, char *string)
+bool token_match(token_t token, char *string)
 {
     return (!my_strncmp(token.txt, string, token.length) &&
             string[token.length] == 0);
 }
 
-bool
-require_token(tokenizer_t * tokenizer, char *string, token_t * token_ptr)
+bool require_token(tokenizer_t * tokenizer, char *string, token_t * token_ptr)
 {
     token_t token = get_token(tokenizer);
     bool result = false;

@@ -7,7 +7,7 @@
 
 #include "op.h"
 
-op_t    op_tab[] = {
+const op_t op_tab[] = {
     {"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 0, 1},
     {"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 0, 1},
@@ -30,5 +30,5 @@ op_t    op_tab[] = {
         "long load index", 1, 1},
     {"lfork", 1, {T_DIR}, 15, 1000, "long fork", 1, 0},
     {"aff", 1, {T_REG}, 16, 2, "aff", 0, 1},
-    {0, 0, {0}, 0, 0, 0, 0}
+    {0, 0, {0}, 0, 0, 0, 0, 0}
 };

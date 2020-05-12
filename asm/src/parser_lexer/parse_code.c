@@ -40,11 +40,10 @@ void parse_header(context_t *ctx, tokenizer_t *tokenizer, enode_node_t **new)
     }
 }
 
-static enode_node_t *
-parse__code(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
+static enode_node_t *parse__code(context_t *ctx,
+                                tokenizer_t *tokenizer, token_t *name)
 {
     enode_node_t *new = 0;
-    token_t token = {0};
 
     if (require_token_type(tokenizer, token_label, name)) {
         new = context_allocate_node(ctx);
@@ -64,8 +63,7 @@ parse__code(context_t *ctx, tokenizer_t *tokenizer, token_t *name)
     return (new);
 }
 
-enode_node_t *
-parse_code(context_t *context, tokenizer_t *tokenizer)
+enode_node_t *parse_code(context_t *context, tokenizer_t *tokenizer)
 {
     bool parsing = true;
     enode_node_t *root = 0, **node_store_target = &root;

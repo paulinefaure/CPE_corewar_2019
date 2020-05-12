@@ -18,8 +18,8 @@ void set_node(enode_node_t *new, token_t *token, int size, int flag)
     new->flag |= flag;
 }
 
-void
-parse_args_dir(context_t *ctx, tokenizer_t *toke, op_t op, enode_node_t *new)
+void parse_args_dir(context_t *ctx, tokenizer_t *toke, 
+                            op_t op, enode_node_t *new)
 {
     token_t token;
     if (require_token_type(toke, token_dir_label, &token)) {
@@ -33,8 +33,8 @@ parse_args_dir(context_t *ctx, tokenizer_t *toke, op_t op, enode_node_t *new)
     }
 }
 
-enode_node_t *
-parse_args(context_t *ctx, tokenizer_t *toke, op_t op, args_type_t type)
+enode_node_t *parse_args(context_t *ctx, tokenizer_t *toke,
+                                    op_t op, args_type_t type)
 {
     token_t token = {0};
     enode_node_t *new = context_allocate_node(ctx);

@@ -9,8 +9,7 @@
 #include "my.h"
 #include "parser.h"
 
-void
-parse_string(char **c, token_t *token)
+void parse_string(char **c, token_t *token)
 {
     token->txt = *c;
     char *end = my_strchr(*c, '"');
@@ -21,8 +20,7 @@ parse_string(char **c, token_t *token)
     *c = end + 1;
 }
 
-void
-parse_alpha(char **c, token_t *token)
+void parse_alpha(char **c, token_t *token)
 {
     token->type = token_alpha_num;
     while (my_char_isalpha(**c) || my_char_isnum(**c) || **c == '_') {
@@ -38,8 +36,7 @@ parse_alpha(char **c, token_t *token)
     }
 }
 
-void
-parse_number(char **c, token_t * token)
+void parse_number(char **c, token_t * token)
 {
     token->type = token_number;
     while (my_char_isnum(**c))

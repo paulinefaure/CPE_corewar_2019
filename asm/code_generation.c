@@ -16,8 +16,7 @@ struct header_t
     int impl;
 };
 
-int
-generate_code(int count, char **filenames)
+int generate_code(int count, char **filenames)
 {
     struct header_t files = { 0 };
 

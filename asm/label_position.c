@@ -26,7 +26,7 @@ size_t get_label_position(enode_node_t *first, char *labelname)
         current = current->next;
     }
     if (!finded)
-        error("Label not exist\n");
+        my_printf("Label not exist\n");
     return (count);
 }
 
