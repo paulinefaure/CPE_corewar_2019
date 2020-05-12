@@ -269,5 +269,9 @@ size_t get_label_position(enode_node_t *first, char *labelname);
 int conversion_instruction(int fd, enode_node_t * root, enode_node_t *node);
 void print(char **out, const char *format, va_list args);
 void set_node(enode_node_t *new, token_t *token, int size, int flag);
+void invert_byte(unsigned int *val);
+void write_exec_magic(header_t *header);
+size_t get_enode_size(enode_node_t *current);
+void write_comment_header(enode_node_t *root, header_t *header);
 
 #endif

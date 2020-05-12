@@ -50,9 +50,8 @@ static void process_parsed_graph(char *filename, enode_node_t * root,
 
 static enode_node_t *parse_file(context_t *context, char *file)
 {
-    tokenizer_t tokenizer = { 0 };
-    tokenizer.at = file;
-    tokenizer.lines = 1;
+    tokenizer_t tokenizer = { .at = file, .lines = 1 };
+
     enode_node_t *root = parse_code(context, &tokenizer);
     if (context->error_stack_size > 0)
         context->exit = 84;

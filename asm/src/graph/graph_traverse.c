@@ -28,6 +28,8 @@ void generated_graph_str(context_t * cont, enode_node_t * root)
         generated_graph_str(cont, root->first_arg);
         if (root->type == node_label)
             generated_graph_str(cont, root->label.instruction);
+        if (root->type == node_header)
+            generated_graph_str(cont, root->header.value);
         IF_THEN(root->next, generated_graph_str(cont, root->next));
     }
 }
