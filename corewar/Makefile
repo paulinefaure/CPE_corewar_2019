@@ -10,6 +10,7 @@ SHELL	=	bash
 SRC 	=	src/corewar_.c	\
 			src/argument/argument_manager.c	\
 			src/help.c	\
+			src/op.c	\
 
 OBJ 	=	$(SRC:.c=.o)
 
