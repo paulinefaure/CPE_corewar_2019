@@ -16,12 +16,8 @@ int main(int argc, char *argv[])
     {
     case EXIT_FAILURE:
         return (EXIT_EPITECH);
-        break;
     case EXIT_HELP:
         return (help());
-        break;
-    default:
-        return (corewar_(argc, argv));
-        break;
     }
+    return (corewar_(argc, argv));
 }

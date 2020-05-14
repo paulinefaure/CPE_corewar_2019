@@ -22,7 +22,7 @@ TEST_SRC	=	tests/test_argument_manager.c	\
 
 TEST_OBJ	=	$(TEST_SRC:.c=.o)
 
-CFLAGS	=	-I./include -Wall -Wextra -Werror -pedantic
+CFLAGS	=	-I./include -Wall -Wextra -pedantic
 
 LFLAGS	=	-L./lib -lmy
 
