@@ -12,6 +12,11 @@ SRC 	=	src/asm_.c	\
 			src/argument/argument_manager.c	\
 			src/argument/file/file_manager.c	\
 			src/argument/file/file_extension.c	\
+			src/errors/manage_errors.c	\
+			src/errors/manage_comment.c	\
+			src/errors/manage_file.c	\
+			src/errors/manage_name.c 	\
+			src/errors/manage_quotes.c	\
 
 OBJ 	=	$(SRC:.c=.o)
 
