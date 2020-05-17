@@ -14,6 +14,9 @@ SRC 	=	src/corewar_.c	\
 			src/init/init_memory.c	\
 			src/init/init_vm.c	\
 			src/dump_mem.c	\
+			src/init/init_champ.c	\
+			src/init/init_champions.c	\
+			src/init/load_champ.c	\
 
 OBJ 	=	$(SRC:.c=.o)
 
