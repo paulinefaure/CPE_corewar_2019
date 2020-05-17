@@ -13,7 +13,7 @@ static void print_byte(char mem)
 {
     if (!(mem & 0xF0))
         write(1, "0", 1);
-    my_put_nbr_base((int) mem, "0123456789ABCDEF");
+    my_put_nbr_base((unsigned char) mem, "0123456789ABCDEF");
 }
 
 void vm_dump_mem(char memory[])
