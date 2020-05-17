@@ -8,6 +8,7 @@
 #include "my.h"
 #include "macros.h"
 #include "errors.h"
+#include "op.h"
 
 int find_name(char **tab)
 {
@@ -27,6 +28,8 @@ int manage_name(char **tab)
     if (x == 84)
         return (EXIT_EPITECH);
     if (check_quotes_name(tab[x]) == 84)
+        return (EXIT_EPITECH);
+    if (my_strlen(tab[x]) > PROG_NAME_LENGTH)
         return (EXIT_EPITECH);
     return (0);
 }
