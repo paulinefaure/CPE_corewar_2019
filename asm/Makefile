@@ -29,6 +29,13 @@ SRC_PARSER_LEXER	=	src/parser_lexer/get_token.c	\
 						src/parser_lexer/skip_whitespace.c	\
 						src/parser_lexer/token_require.c	\
 
+SRC_ERRORS	=	src/errors/manage_errors.c	\
+				src/errors/manage_comment.c	\
+				src/errors/manage_file.c	\
+				src/errors/manage_name.c 	\
+				src/errors/manage_quotes.c	\
+
+
 SRC 	=	src/asm_.c	\
 			src/help.c	\
 			src/asm_header.c	\
@@ -45,6 +52,7 @@ SRC 	=	src/asm_.c	\
 			$(SRC_ENODE_NODE)	\
 			$(SRC_GRAPH)	\
 			$(SRC_PARSER_LEXER)	\
+			$(SRC_ERRORS)	\
 
 OBJ 	=	$(SRC:.c=.o)
 
