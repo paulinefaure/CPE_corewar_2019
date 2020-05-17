@@ -16,12 +16,8 @@ int main(int argc, char *argv[])
     {
     case EXIT_FAILURE:
         return (EXIT_EPITECH);
-        break;
     case EXIT_HELP:
         return (help());
-        break;
-    default:
-        return (asm_(argc, argv));
-        break;
     }
+    return (asm_(argc, argv));
 }

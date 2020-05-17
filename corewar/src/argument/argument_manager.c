@@ -18,10 +18,6 @@ int argument_manager(int ac, char *av[])
             return (EXIT_HELP);
         else
             return (EXIT_SUCCESS);
-        break;
-    
-    default:
-        return (EXIT_FAILURE);
-        break;
     }
+    return (EXIT_FAILURE);
 }
