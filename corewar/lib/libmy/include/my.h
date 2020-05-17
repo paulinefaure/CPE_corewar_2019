@@ -44,7 +44,7 @@ char *concat_params(int argc, char **argv);
 int my_show_word_array(char const **tab);
 char **my_str_to_word_array(char *str);
 char *my_strdup(char const *src);
-void my_put_nbr_base(int nb, char *base);
+void my_put_nbr_base(unsigned char nb, char *base);
 char *my_wordcpy(char *dest, char const *src);
 
 #endif /* MY_H */

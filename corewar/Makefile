@@ -11,6 +11,9 @@ SRC 	=	src/corewar_.c	\
 			src/argument/argument_manager.c	\
 			src/help.c	\
 			src/op.c	\
+			src/init/init_memory.c	\
+			src/init/init_vm.c	\
+			src/dump_mem.c	\
 
 OBJ 	=	$(SRC:.c=.o)
 
