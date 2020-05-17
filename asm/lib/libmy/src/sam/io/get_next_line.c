@@ -9,8 +9,7 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
-void
-malloc_buffer(char **buffer, const int fd)
+void malloc_buffer(char **buffer, const int fd)
 {
     if (*buffer == NULL || *buffer[0] == '\0') {
         int byte = 0;
@@ -24,15 +23,13 @@ malloc_buffer(char **buffer, const int fd)
     }
 }
 
-char *
-malloc_result(char **result)
+char *malloc_result(char **result)
 {
     *result = malloc(sizeof(char) * (READ_SIZE + 1));
     return (*result);
 }
 
-void
-copy(char *result, char *str1, char *str2, int *j)
+void copy(char *result, char *str1, char *str2, int *j)
 {
     for (int i = 0; str1[i]; i++, *j += 1)
         result[*j] = str1[i];
@@ -40,8 +37,7 @@ copy(char *result, char *str1, char *str2, int *j)
         result[*j] = str2[i];
 }
 
-char *
-str_cat_dup(char *str1, char *str2)
+char *str_cat_dup(char *str1, char *str2)
 {
     char *result = NULL;
     int len_str1 = 0;
@@ -65,8 +61,7 @@ str_cat_dup(char *str1, char *str2)
     return (result);
 }
 
-char *
-get_next_line(int fd)
+char *get_next_line(int fd)
 {
     static char *buffer;
     char *ret = NULL;

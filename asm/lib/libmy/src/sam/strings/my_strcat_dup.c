@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-char *
-my_strcat_dup(char *str1, char *str2)
+char *my_strcat_dup(char *str1, char *str2)
 {
     if (!str1)
         return (str2);

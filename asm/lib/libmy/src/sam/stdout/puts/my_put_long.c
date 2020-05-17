@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-static int
-display_min_int(void)
+static int display_min_int(void)
 {
     my_putchar('-');
     my_putchar('2');
@@ -24,8 +23,7 @@ display_min_int(void)
     return (0);
 }
 
-void
-my_put_long(long nb)
+void my_put_long(long nb)
 {
     if (nb == -2147483648) {
         display_min_int();
@@ -40,8 +38,7 @@ my_put_long(long nb)
     my_putchar(nb % 10 + 48);
 }
 
-void
-my_put_long_int(long int nb)
+void my_put_long_int(long int nb)
 {
     if (nb == -2147483648) {
         display_min_int();

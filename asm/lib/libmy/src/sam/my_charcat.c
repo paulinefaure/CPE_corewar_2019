@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-char *
-my_charcat(char *dest, char src)
+char *my_charcat(char *dest, char src)
 {
     int dest_len = my_strlen(dest);
 

@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-void
-my_put_float(double nb)
+void my_put_float(double nb)
 {
     int i;
     int entire_part;

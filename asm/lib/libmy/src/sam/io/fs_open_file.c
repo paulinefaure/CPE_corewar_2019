@@ -9,8 +9,7 @@
 #include "my.h"
 #include <fcntl.h>
 
-int
-fs_open_file(char const *filepath, char *perm)
+int fs_open_file(char const *filepath, char *perm)
 {
     int fd = -1;
 
