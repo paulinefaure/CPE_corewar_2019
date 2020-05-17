@@ -8,8 +8,6 @@
 #include "my.h"
 #include "parser.h"
 
-int lines = 1;
-
 static bool is_whitespace(char c)
 {
     return (c == ' ' || c == '\n' || c == '\t' || c == '\r' || c == '#');

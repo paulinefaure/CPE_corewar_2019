@@ -14,7 +14,7 @@
 
 #define ERROR(x) "\33[31mERROR:\33[0m "
 
-#define IF_THEN(c, ret) if (c) ret;
+#define IF_THEN(c, ret) if (c){ ret;};
 #define ELIF(c) else if (c)
 #define ASSIGN_RETURN_IF(c, assign, ret) if (c) assign; \
                                         IF_THEN(c, ret)
@@ -270,7 +270,7 @@ size_t get_label_position(enode_node_t *first, char *labelname);
 int conversion_instruction(int fd, enode_node_t * root, enode_node_t *node);
 void print(char **out, const char *format, va_list args);
 void set_node(enode_node_t *new, token_t *token, int size, int flag);
-void invert_byte(unsigned int *val);
+void invert_byte(int *val);
 void write_exec_magic(header_t *header);
 size_t get_enode_size(enode_node_t *current);
 void write_comment_header(enode_node_t *root, header_t *header);

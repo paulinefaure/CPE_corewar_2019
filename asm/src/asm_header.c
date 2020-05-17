@@ -9,7 +9,7 @@
 #include "my.h"
 #include "parser.h"
 
-void invert_byte(unsigned int *val)
+void invert_byte(int *val)
 {
     int i = 3;
     unsigned int revnbr;
