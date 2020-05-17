@@ -21,8 +21,6 @@ char *readfile_into_mem(context_t * cont, char *filepath)
     char *res = NULL;
 
     if (fd != -1) {
-        if (!verif_ext(filepath))
-            return (0);
         lseek(fd, 0, SEEK_END);
         size_t size = lseek(fd, 0, SEEK_CUR);
         lseek(fd, 0, SEEK_SET);
@@ -68,7 +66,6 @@ int enode_node_parser(enode_node_custom_t * ctm, char **fnames, int fcount)
     ASSERT(parsed != 0);
     for (int i = 1; i < fcount; i++) {
         IF_THEN(fnames[i] == 0, continue);
-        my_printf("Processing file at \"%s\".\n", fnames[i]);
         char *file = readfile_into_mem(&ctx, fnames[i]);
         LOG_ERROR(!file, continue, "Could not load '%s'.\n", fnames[i]);
         parsed[nbr_parsed].root = parse_file(&ctx, file);

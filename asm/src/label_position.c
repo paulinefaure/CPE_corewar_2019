@@ -18,15 +18,17 @@ size_t get_label_position(enode_node_t *first, char *labelname)
     bool finded = false;
 
     while (current) {
-        if (!my_strcmp(current->string, labelname)) {
+        if (!my_strcmp(current->string, labelname) && current->type == node_label) {
             finded = true;
             break ;
         }
         count += current->size;
         current = current->next;
     }
-    if (!finded)
+    if (!finded) {
         my_printf("Label not exist\n");
+        exit(84);
+    }
     return (count);
 }
 
@@ -47,7 +49,9 @@ size_t get_request_label_position(
         count += current->size;
         current = current->next;
     }
-    if (!finded)
+    if (!finded) {
         my_printf("Unknow error\n");
+        exit(84);
+    }
     return (count);
 }
