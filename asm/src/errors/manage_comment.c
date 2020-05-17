@@ -33,5 +33,6 @@ int manage_comment(char **tab)
         return (EXIT_EPITECH);
     if (check_quotes_comment(tab[x]) == 84)
         return (EXIT_EPITECH);
+    if (my_strlen(tab[x]) > COMMENT_LENGHT)
     return (0);
 }
