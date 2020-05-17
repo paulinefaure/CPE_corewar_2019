@@ -16,9 +16,6 @@ int file_extension(char *file)
     {
     case 0:
         return (EXIT_SUCCESS);
-        break;
-    default:
-        break;
     }
     return (EXIT_FAILURE);
 }

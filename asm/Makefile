@@ -7,11 +7,44 @@
 
 SHELL	=	bash
 
+SRC_FILE	=	src/argument/file/file_manager.c	\
+				src/argument/file/file_extension.c	\
+
+SRC_ARGUEMENT	=	$(SRC_FILE)	\
+					src/argument/argument_manager.c	\
+
+SRC_CONTEXT	=	src/context/context_allocate_memory.c	\
+				src/context/context_push_error.c	\
+
+SRC_ENODE_NODE	=	src/enode_node/enode_node_parser.c	\
+
+SRC_GRAPH	=	src/graph/graph_traverse.c	\
+
+SRC_PARSER_LEXER	=	src/parser_lexer/get_token.c	\
+						src/parser_lexer/parse_code_args.c	\
+						src/parser_lexer/parse_code.c	\
+						src/parser_lexer/parse_instruction.c	\
+						src/parser_lexer/parse.c	\
+						src/parser_lexer/peek_token.c	\
+						src/parser_lexer/skip_whitespace.c	\
+						src/parser_lexer/token_require.c	\
+
 SRC 	=	src/asm_.c	\
 			src/help.c	\
-			src/argument/argument_manager.c	\
-			src/argument/file/file_manager.c	\
-			src/argument/file/file_extension.c	\
+			src/asm_header.c	\
+			src/code_generation.c	\
+			src/conversion_instruction.c	\
+			src/custom_callback.c	\
+			src/extension.c	\
+			src/label_position.c	\
+			src/op.c	\
+			src/print_n_reset_errors.c	\
+			src/utilities.c	\
+			$(SRC_ARGUEMENT)	\
+			$(SRC_CONTEXT)	\
+			$(SRC_ENODE_NODE)	\
+			$(SRC_GRAPH)	\
+			$(SRC_PARSER_LEXER)	\
 
 OBJ 	=	$(SRC:.c=.o)
 
@@ -26,7 +59,7 @@ TEST_SRC	=	tests/test_argument_manager.c	\
 
 TEST_OBJ	=	$(TEST_SRC:.c=.o)
 
-CFLAGS	=	-I./include -Wall -Wextra -Werror -pedantic
+CFLAGS	=	-I./include -Wall -Wextra -Werror
 
 LFLAGS	=	-L./lib -lmy
 
@@ -53,6 +86,11 @@ build_lib: ## Compile the libs
 	@$(MAKE) -C ./lib/libmy/ --silent
 	@cp ./lib/libmy/libmy.a ./lib/libmy.a
 	@cp ./lib/libmy/include/my.h ./include/my.h
+	@cp ./lib/libmy/include/get_next_line.h ./include/get_next_line.h
+	@cp ./lib/libmy/include/my_printf.h ./include/my_printf.h
+	@cp ./lib/libmy/include/type.h ./include/type.h
+	@cp ./lib/libmy/include/smart_ptr.h ./include/smart_ptr.h
+	@cp ./lib/libmy/include/debug.h ./include/debug.h
 
 %.o: %.c ## Compile the objects
 	@$(CC) $(CFLAGS) -c $< -o $@

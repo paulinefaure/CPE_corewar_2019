@@ -31,14 +31,17 @@ typedef char args_type_t;
 #define T_IND 4
 #define T_LAB 8
 
-typedef struct op_s {
-   char *mnemonique;
-   char nbr_args;
-   args_type_t type[MAX_ARGS_NUMBER];
-   char code;
-   int nbr_cycles;
-   char *comment;
-} op_t;
+typedef struct  op_s
+{
+    char         *mnemonique;
+    char         nbr_args;
+    args_type_t  type[MAX_ARGS_NUMBER];
+    char         code;
+    int          nbr_cycles;
+    char         *comment;
+    char         use_index;
+    char         use_coding_byte;
+}op_t;
 
 #define IND_SIZE 2
 #define DIR_SIZE 4
