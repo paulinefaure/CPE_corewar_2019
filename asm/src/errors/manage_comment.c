@@ -5,11 +5,10 @@
 ** manage_errors.c
 */
 
-#include <stddef.h>
+#include <stdio.h>
 #include "errors.h"
 #include "macros.h"
 #include "my.h"
-#include "op.h"
 
 int find_comment(char **tab)
 {
@@ -31,7 +30,5 @@ int manage_comment(char **tab)
         return (EXIT_EPITECH);
     if (check_quotes_comment(tab[x]) == 84)
         return (EXIT_EPITECH);
-    // if (my_strlen(tab[x]) > COMMENT_LENGTH)
-    //     return (EXIT_EPITECH);
     return (0);
 }

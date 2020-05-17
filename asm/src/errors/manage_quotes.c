@@ -12,7 +12,7 @@ char *delete_space(char *str)
 {
     int i = 0;
     int x = 0;
-    char *copy = malloc(sizeof (char) * (my_strlen(str) + 1));
+    char *copy = malloc(sizeof(char) * (my_strlen(str) + 1));
 
     while (str[i] != '\0') {
         if (str[i] == '\t' || str[i] == ' ')
