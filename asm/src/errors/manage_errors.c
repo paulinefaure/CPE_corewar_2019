@@ -5,14 +5,14 @@
 ** manage_errors.c
 */
 
-#include <stdio.h>
 #include "macros.h"
 #include "errors.h"
+#include <stdio.h>
 
 int manage_errors(char *str)
 {
     char **tab = manage_file(str);
-
+    printf("toto");
     if (manage_name(tab) == 84)
         return (EXIT_EPITECH);
     if (manage_comment(tab) == 84)

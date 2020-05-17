@@ -5,20 +5,18 @@
 ** manage_name.c
 */
 
-#include <stdio.h>
 #include "my.h"
 #include "macros.h"
 #include "errors.h"
+#include "op.h"
 
 int find_name(char **tab)
 {
     int x = 0;
 
     for (; tab[x] != NULL; x++) {
-        if (my_strncmp(tab[x], ".name", 5) == 0) {
-            printf("tab[%d] = %s\n", x, tab[x]);
+        if (my_strncmp(tab[x], ".name", 5) == 0)
             return (x);
-        }
     }
     return (84);
 }
@@ -31,5 +29,7 @@ int manage_name(char **tab)
         return (EXIT_EPITECH);
     if (check_quotes_name(tab[x]) == 84)
         return (EXIT_EPITECH);
+    // if (my_strlen(tab[x]) > PROG_NAME_LENGTH)
+    //     return (EXIT_EPITECH);
     return (0);
 }

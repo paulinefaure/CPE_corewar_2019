@@ -30,21 +30,12 @@ char *open_file(char const *filepath)
     return (buffer);
 }
 
-char **parsing_buffer(char **tab, char *buffer)
+char **my_malloc(char **tab, char *buffer, int count)
 {
-    int count = 0;
+    int i = 0;
     int x = 0;
 
-    for (int i = 0; buffer[i] != '\0'; i++) {
-        if (buffer[i] == '\n')
-            count++;
-    }
-    count++;
-    tab = malloc(sizeof(char *) * (count + 1));
-    if (tab == NULL)
-        return (NULL);
-    count = 0;
-    for (int i = 0; buffer[i] != '\0'; i++) {
+    for (; buffer[i] != '\0'; i++) {
         count++;
         if (buffer[i] == '\n') {
             tab[x] = malloc(sizeof(char) * (count));
@@ -55,6 +46,19 @@ char **parsing_buffer(char **tab, char *buffer)
     tab[x] = malloc(sizeof(char) * (count));
     x++;
     tab[x] = NULL;
+    return (tab);
+}
+
+char **parsing_buffer(char **tab, char *buffer)
+{
+    int count = 0;
+
+    for (int i = 0; buffer[i] != '\0'; i++) {
+        if (buffer[i] == '\n')
+            count++;
+    }
+    count++;
+    tab = my_malloc(tab, buffer, count);
     return (tab);
 }
 
@@ -84,13 +88,17 @@ char **manage_file(char const *str)
     char *buffer = NULL;
     char **tab = NULL;
 
+    printf("hellor");
     buffer = open_file(str);
+    printf("buffer");
     if (buffer == NULL)
         return (NULL);
     tab = parsing_buffer(tab, buffer);
+    printf("tab 1");
     if (tab == NULL)
         return (NULL);
     tab = copy_buffer(tab, buffer);
+    printf("tab 2");
     if (tab == NULL)
         return (NULL);
     return (tab);

@@ -5,7 +5,6 @@
 ** manage_comment.c
 */
 
-#include <stdio.h>
 #include "my.h"
 #include "macros.h"
 
@@ -32,16 +31,12 @@ int check_quotes_comment(char *str)
     int i = 8;
 
     str = delete_space(str);
-    if (str[i] != '"') {
-        printf("manque first quotes comment");
+    if (str[i] != '"')
         return (84);
-    }
     while (str[i] != '\0')
         i++;
-    if (str[i - 1] != '"') {
-        printf("manque last quotes comment");
+    if (str[i - 1] != '"')
         return (84);
-    }
     return (0);
 }
 
@@ -50,15 +45,11 @@ int check_quotes_name(char *str)
     int i = 5;
 
     str = delete_space(str);
-    if (str[i] != '"') {
-        printf("manque first quotes name");
+    if (str[i] != '"')
         return (84);
-    }
     while (str[i] != '\0')
         i++;
-    if (str[i - 1] != '"') {
-        printf("manque last quotes name");
+    if (str[i - 1] != '"')
         return (84);
-    }
     return (0);
 }
