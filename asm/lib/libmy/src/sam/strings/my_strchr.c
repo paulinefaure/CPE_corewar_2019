@@ -5,8 +5,7 @@
 ** finding occurrence of a character in a string
 */
 
-char *
-my_strchr(char *str, int c)
+char *my_strchr(char *str, int c)
 {
     do {
         if (*str == c)

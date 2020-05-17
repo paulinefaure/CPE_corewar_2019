@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-int
-my_char_isalpha(char str)
+int my_char_isalpha(char str)
 {
     if (str >= 'a' && str <= 'z') {
         return (1);

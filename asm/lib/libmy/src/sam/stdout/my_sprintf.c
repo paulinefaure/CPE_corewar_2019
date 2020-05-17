@@ -12,8 +12,7 @@
 
 void print(char **out, const char *format, va_list args);
 
-void
-my_sprintf(char *buffer, const char *format, ...)
+void my_sprintf(char *buffer, const char *format, ...)
 {
     va_list args;
 

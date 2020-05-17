@@ -5,8 +5,7 @@
 ** like_memset
 */
 
-void *
-my_memset(void *ptr, int x, int n)
+void *my_memset(void *ptr, int x, int n)
 {
     unsigned char *temp = ptr;
     for (int i = 0; i < n; i++)

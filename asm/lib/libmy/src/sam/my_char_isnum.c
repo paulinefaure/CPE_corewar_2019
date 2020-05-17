@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-int
-my_char_isnum(char str)
+int my_char_isnum(char str)
 {
     if (str >= '0' && str <= '9')
         return (1);

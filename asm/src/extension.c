@@ -34,12 +34,17 @@ bool verif_ext(char *name)
 
 char *replace_extension(char *name, char *ext)
 {
-    char *find = my_strchr(name, '.');
-    size_t len = find - name;
+    char *find = 0;
+    for (int i = 0; name[i]; i++)
+        if (name[i] == '.')
+            find = name + i;
+    size_t len = my_strlen(name);
+    if (find)
+        len = find - name;
     char *new = malloc(sizeof(char) * (len + 1));
 
-    my_memset(new, 0, len + 1);
     if (new) {
+        my_memset(new, 0, len + 1);
         my_strncpy(new, name, len);
         new = my_strcat_dup(new, my_strdup(ext));
     }

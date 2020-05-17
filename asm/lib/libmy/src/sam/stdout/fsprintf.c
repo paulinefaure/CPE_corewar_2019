@@ -13,14 +13,12 @@
 
 void print(char **out, const char *format, va_list args);
 
-static void
-example(char *buffer, char *format, va_list args)
+static void example(char *buffer, char *format, va_list args)
 {
     print(&buffer, format, args);
 }
 
-void
-fsprintf(int fd, char *format, ...)
+void fsprintf(int fd, char *format, ...)
 {
     va_list args;
     char buffer[255] = "";

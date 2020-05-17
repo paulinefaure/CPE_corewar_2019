@@ -7,8 +7,7 @@
 
 #include "my.h"
 
-void
-my_putbase(int num, const char *base)
+void my_putbase(int num, const char *base)
 {
     int base_size = my_strlen(base);
 

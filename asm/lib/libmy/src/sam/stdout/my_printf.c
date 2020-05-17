@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-flag_t_t flags[] = {
+const flag_t_t flags[] = {
     {"d", &print_nbr},
     {"s", &print_str},
     {"c", &print_char_void},
@@ -24,8 +24,7 @@ flag_t_t flags[] = {
     {"#X", &print_prefixe_hexx},
 };
 
-static void
-find_flag(char *f, char **out, va_list args)
+static void find_flag(char *f, char **out, va_list args)
 {
     for (size_t i = 0; i < 10; i++) {
         if (my_strcmp(f, "%") == 0) {
@@ -37,8 +36,7 @@ find_flag(char *f, char **out, va_list args)
     }
 }
 
-void
-print(char **out, const char *format, va_list args)
+void print(char **out, const char *format, va_list args)
 {
     char f[5];
 
@@ -61,8 +59,7 @@ print(char **out, const char *format, va_list args)
     va_end(args);
 }
 
-void
-my_printf(const char *format, ...)
+void my_printf(const char *format, ...)
 {
     va_list args;
 

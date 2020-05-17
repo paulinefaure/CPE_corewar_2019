@@ -8,8 +8,7 @@
 #include <unistd.h>
 #include "my.h"
 
-void
-print_char_void(char **str, void *c)
+void print_char_void(char **str, void *c)
 {
     if (str) {
         **str = (long) c;
@@ -18,8 +17,7 @@ print_char_void(char **str, void *c)
         my_putchar((long) c);
 }
 
-void
-print_char(char **str, int c)
+void print_char(char **str, int c)
 {
     if (str) {
         **str = c;
@@ -29,8 +27,7 @@ print_char(char **str, int c)
         my_putchar(c);
 }
 
-void
-print_str(char **str, void *s)
+void print_str(char **str, void *s)
 {
     if (str) {
         for (size_t i = 0; ((char *) s)[i]; i++)
