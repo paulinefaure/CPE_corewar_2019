@@ -44,7 +44,7 @@ int load_champ(char *path, char memory[], champ_t *champion, size_t load_index)
     if (callback.offset == -1)
         return (-1);
     for (int i = 0x8a7; i < callback.offset; ++i)
-        memory[load_index + i - 0x8a7] = callback.buf[i];
+        memory[(load_index + i - 0x8a7) % MEM_SIZE] = callback.buf[i];
     champion->cursor = load_index;
     return (0);
 }
