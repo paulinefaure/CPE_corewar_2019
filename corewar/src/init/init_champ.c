@@ -24,6 +24,7 @@ static void set_name(char *dest, char *path)
     for (int i = 4; tmp[i] && tmp[i] != '/'; ++i)
         dest[i - 4] = tmp[i];
     my_revstr(dest);
+    free(tmp);
 }
 
 void vm_init_champ(char *path, champ_t *champion)
