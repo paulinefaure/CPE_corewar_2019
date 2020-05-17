@@ -6,11 +6,9 @@
 */
 
 #include <stdlib.h>
-#include "prototype.h"
+#include "parser.h"
 
-int asm_(int ac, char *av[])
+int asm_(int32_t ac, char *av[])
 {
-    (void)ac;
-    (void)av;
-    return (EXIT_SUCCESS);
+    return (generate_code(ac, av));
 }

@@ -8,9 +8,10 @@
 #include <stdlib.h>
 #include "prototype.h"
 #include "argument.h"
+#include "parser.h"
 #include "macros.h"
 
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char *argv[])
 {
     switch (argument_manager(argc, argv))
     {

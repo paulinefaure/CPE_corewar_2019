@@ -1,7 +1,0 @@
-.vscode
-*.o
-*.a
-*.gcda
-*.gcno
-asm/asm
-corewar/corewar
