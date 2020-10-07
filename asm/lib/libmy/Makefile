@@ -5,6 +5,8 @@
 ## The Makefile for libmy
 ##
 
+LIB_SAM		=	src/sam
+
 SRC 	=	src/concat_params.c	\
 			src/my_compute_power_rec.c	\
 			src/my_compute_square_root.c	\
@@ -40,6 +42,27 @@ SRC 	=	src/concat_params.c	\
 			src/my_strupcase.c	\
 			src/my_swap.c	\
 			src/my_wordcpy.c	\
+			$(LIB_SAM)/debug.c	\
+			$(LIB_SAM)/my_char_isalpha.c	\
+			$(LIB_SAM)/my_char_isnum.c	\
+			$(LIB_SAM)/my_charcat.c	\
+			$(LIB_SAM)/io/fs_open_file.c	\
+			$(LIB_SAM)/io/get_next_line.c	\
+			$(LIB_SAM)/memory/my_memcpy.c	\
+			$(LIB_SAM)/memory/my_memset.c	\
+			$(LIB_SAM)/stdout/fsprintf.c	\
+			$(LIB_SAM)/stdout/my_print_bases_prefix.c	\
+			$(LIB_SAM)/stdout/my_print_bases.c	\
+			$(LIB_SAM)/stdout/my_print_puts.c	\
+			$(LIB_SAM)/stdout/my_printf.c	\
+			$(LIB_SAM)/stdout/my_sprintf.c	\
+			$(LIB_SAM)/stdout/puts/my_put_float.c	\
+			$(LIB_SAM)/stdout/puts/my_put_long.c	\
+			$(LIB_SAM)/stdout/puts/my_put_unsigned.c	\
+			$(LIB_SAM)/stdout/puts/my_putbase.c	\
+			$(LIB_SAM)/strings/my_strcat_dup.c	\
+			$(LIB_SAM)/strings/my_strchr.c	\
+
 
 OBJ 	=	$(SRC:.c=.o)
 

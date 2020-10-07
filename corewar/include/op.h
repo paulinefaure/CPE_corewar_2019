@@ -32,12 +32,12 @@ typedef char args_type_t;
 #define T_LAB 8
 
 typedef struct op_s {
-   char         *mnemonique;
-   char         nbr_args;
-   args_type_t  type[MAX_ARGS_NUMBER];
-   char         code;
-   int          nbr_cycles;
-   char         *comment;
+   char *mnemonique;
+   char nbr_args;
+   args_type_t type[MAX_ARGS_NUMBER];
+   char code;
+   int nbr_cycles;
+   char *comment;
 } op_t;
 
 #define IND_SIZE 2
@@ -57,8 +57,8 @@ typedef struct header_s {
    char comment[COMMENT_LENGTH + 1];
 } header_t;
 
-# define CYCLE_TO_DIE 1536
-# define CYCLE_DELTA 5
-# define NBR_LIVE 40
+#define CYCLE_TO_DIE 1536
+#define CYCLE_DELTA 5
+#define NBR_LIVE 40
 
 #endif

@@ -5,7 +5,7 @@
 ** my_getnbr
 */
 
-long long int print_nbr(int i, int sign, char const *str)
+static long long int print_nbr(int i, int sign, char const *str)
 {
     long long int result = 0;
 

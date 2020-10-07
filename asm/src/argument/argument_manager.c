@@ -20,7 +20,10 @@ int argument_manager(int ac, char *av[])
         else
             if (file_manager(av[1]) == 0)
                 return (EXIT_SUCCESS);
+<<<<<<< HEAD
         break;
+=======
+>>>>>>> e06ac52b8155130c9d0cfcb183a27484ec98ecc1
     }
     return (EXIT_FAILURE);
 }

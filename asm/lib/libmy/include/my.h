@@ -9,6 +9,10 @@
 #define MY_H
 
 #include <stdlib.h>
+#include <stdio.h>
+#include "type.h"
+#include "get_next_line.h"
+#include "my_printf.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);
@@ -46,5 +50,13 @@ char **my_str_to_word_array(char *str);
 char *my_strdup(char const *src);
 void my_put_nbr_base(int nb, char *base);
 char *my_wordcpy(char *dest, char const *src);
+int fs_open_file(char const *filepath, char *perm);
+void *my_memset(void *ptr, int x, int n);
+void *my_memcpy(void *dest, const void *src, size_t len);
+int my_char_isalpha(char str);
+int my_char_isnum(char str);
+char *my_strcat_dup(char *str1, char *str2);
+char *my_charcat(char *dest, char src);
+char *my_strchr(char *str, int c);
 
 #endif /* MY_H */

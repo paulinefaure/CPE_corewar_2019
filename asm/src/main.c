@@ -8,18 +8,21 @@
 #include <stdlib.h>
 #include "prototype.h"
 #include "argument.h"
+#include "parser.h"
 #include "macros.h"
 
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char *argv[])
 {
     switch (argument_manager(argc, argv))
     {
     case EXIT_FAILURE:
         return (EXIT_EPITECH);
-        break;
     case EXIT_HELP:
         return (help());
+<<<<<<< HEAD
         break;
+=======
+>>>>>>> e06ac52b8155130c9d0cfcb183a27484ec98ecc1
     }
     return (asm_(argc, argv));
 }
