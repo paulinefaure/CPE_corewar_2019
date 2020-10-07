@@ -21,8 +21,6 @@ int argument_manager(int ac, char *av[])
             if (file_manager(av[1]) == 0)
                 return (EXIT_SUCCESS);
         break;
-    default:
-        break;
     }
     return (EXIT_FAILURE);
 }
